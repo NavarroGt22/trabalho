@@ -1,0 +1,21 @@
+-- Criação do banco de dados
+CREATE DATABASE IF NOT EXISTS sistemadevendas;
+USE sistemadevendas;
+
+-- Tabela de clientes
+CREATE TABLE IF NOT EXISTS cliente (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    telefone VARCHAR(20),
+    totalGasto DOUBLE DEFAULT 0
+);
+
+-- Tabela de vendas
+CREATE TABLE IF NOT EXISTS venda (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idCliente INT NOT NULL,
+    valor DOUBLE NOT NULL,
+    data DATE NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES cliente(id) ON DELETE CASCADE
+);
